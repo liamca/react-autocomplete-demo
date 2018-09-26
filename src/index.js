@@ -33,7 +33,7 @@ class AutoComplete extends React.Component {
 
   onSuggestionsFetchRequested = ({ value }) => {
     axios
-      .post('https://' + [ENTER YOUR AZURE SEARCH API KEY]  +'/indexes/' + [ENTER YOUR AZURE SEARCH INDEX NAME] + '/docs/autocomplete?api-version=2017-11-11-Preview', 
+      .post('https://azs-playground.search.windows.net/indexes/realestate-us-sample/docs/autocomplete?api-version=2017-11-11-Preview', 
         {
 		  "search": value,
 		  "suggesterName": "sg",
@@ -43,7 +43,7 @@ class AutoComplete extends React.Component {
           headers: 
 		  { 
 			'Content-Type': 'application/json', 
-			'api-key': [ENTER YOUR AZURE SEARCH API KEY]
+			'api-key': '595D275EDAA5A9B0268ECEE0AF22C159'
 		  }
         }
       )
