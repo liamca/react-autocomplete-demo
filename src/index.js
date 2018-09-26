@@ -22,8 +22,7 @@ class AutoComplete extends React.Component {
   renderSuggestion = suggestion => {
     return (
       <div className="result">
-        <div>{suggestion.fullName}</div>
-        <div className="shortCode">{suggestion.shortCode}</div>
+        <div>{suggestion}</div>
       </div>
     )
   }
@@ -34,17 +33,22 @@ class AutoComplete extends React.Component {
 
   onSuggestionsFetchRequested = ({ value }) => {
     axios
-      .post('http://localhost:9200/crm_app/customers/_search', {
-        query: {
-          multi_match: {
-            query: value,
-            fields: ['fullName', 'shortCode']
-          }
+      .post('https://' + [ENTER YOUR AZURE SEARCH API KEY]  +'/indexes/' + [ENTER YOUR AZURE SEARCH INDEX NAME] + '/docs/autocomplete?api-version=2017-11-11-Preview', 
+        {
+		  "search": value,
+		  "suggesterName": "sg",
+		  "autocompleteMode": "twoTerms"
         },
-        sort: ['_score', { createdDate: 'desc' }]
-      })
+        {
+          headers: 
+		  { 
+			'Content-Type': 'application/json', 
+			'api-key': [ENTER YOUR AZURE SEARCH API KEY]
+		  }
+        }
+      )
       .then(res => {
-        const results = res.data.hits.hits.map(h => h._source)
+        const results = res.data.value.map(h => h.text)
         this.setState({ suggestions: results })
       })
   }
@@ -69,7 +73,7 @@ class AutoComplete extends React.Component {
           suggestions={suggestions}
           onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
           onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-          getSuggestionValue={suggestion => suggestion.fullName}
+          getSuggestionValue={suggestion => suggestion}
           renderSuggestion={this.renderSuggestion}
           inputProps={inputProps}
         />
