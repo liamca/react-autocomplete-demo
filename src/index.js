@@ -61,7 +61,7 @@ class AutoComplete extends React.Component {
     const { value, suggestions } = this.state
 
     const inputProps = {
-      placeholder: 'customer name or short code',
+      placeholder: 'city name',
       value,
       onChange: this.onChange
     }
