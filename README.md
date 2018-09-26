@@ -7,7 +7,7 @@ Demo app for autocomplete widget using React and Azure Searc.  Please note this 
 Clone the repository and install the dependencies
 
 ```bash
-$ git clone git@github.com:rcdexta/react-autocomplete-demo.git
+$ git clone git@github.com:liamca/react-autocomplete-demo.git
 $ cd react-autocomplete-demo
 $ yarn
 ```
