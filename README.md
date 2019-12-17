@@ -7,7 +7,7 @@ Demo app for autocomplete widget using React and Azure Search.  Please note this
 Clone the repository and install the dependencies
 
 ```bash
-$ git clone git@github.com:liamca/react-autocomplete-demo.git
+$ git clone https://github.com/liamca/react-autocomplete-demo.git
 $ cd react-autocomplete-demo
 $ yarn
 ```
